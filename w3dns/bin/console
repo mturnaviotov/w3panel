@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "w3dns"
+
+# You can add fixtures and/or initialization code here to make experimenting
+# with your gem easier. You can also use a different console, if you like.
+
+# (If you use this, don't forget to add pry to your Gemfile!)
+require "pry"
+
+#require "irb"
+#IRB.start(__FILE__)
+
+c = W3dns::Server.configure('localhost', 'BO8zpNYJqJ7bc')
+#zone= c.zone.create('example.com', ['ns3.EXAMPLE.COM', 'ns4.EXAMPLE.COM'], ['ns3.EXAMPLE.COM', 'ns4.EXAMPLE.COM'], 'master', 'EXAMPLE.COM' )
+# zone.update_record('z','A',['1.1.1.1'])
+#zone.delete_record('z','A')
+#zone.delete
+#zone = c.zone.get('example.com.') # .delete
+Pry.start binding
+
