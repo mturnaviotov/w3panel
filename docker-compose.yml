@@ -1,0 +1,122 @@
+services:
+  db:
+    image: postgres:18-alpine
+    container_name: w3panel_db
+    restart: always
+    environment:
+      POSTGRES_USER: w3dhcp
+      POSTGRES_PASSWORD: w3dhcp
+      POSTGRES_DB: w3dhcp_development
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U w3dhcp -d w3dhcp_development"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:6-alpine
+    container_name: w3panel_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  dns:
+    image: powerdns/pdns-auth-51:latest
+    container_name: w3panel_dns
+    restart: always
+    ports:
+      - "8081:8081"
+      - "53:53/udp"
+      - "53:53/tcp"
+    command:
+      - "--api=yes"
+      - "--api-key=${DNS_SERVER_KEY:-BO8zpNYJqJ7bc}"
+      - "--webserver=yes"
+      - "--webserver-address=0.0.0.0"
+      - "--webserver-allow-from=192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,127.0.0.1,::1"
+      - "--webserver-password=${DNS_SERVER_KEY:-BO8zpNYJqJ7bc}"
+      - "--disable-syslog=yes"
+      - "--webserver-loglevel=detailed"
+
+  api:
+    build:
+      context: .
+      dockerfile: w3dhcp-api/Dockerfile
+    container_name: w3panel_api
+    restart: always
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./w3dhcp-api:/app
+      - bundle_cache:/usr/local/bundle
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_URL=postgres://w3dhcp:w3dhcp@db:5432/w3dhcp_development
+      - REDIS_URL=redis://redis:6379/0
+      - DNS_SERVER_HOST=${DNS_SERVER_HOST:-dns}
+      - DNS_SERVER_KEY=${DNS_SERVER_KEY:-BO8zpNYJqJ7bc}
+      - SECRET_KEY_BASE=123123123
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      dns:
+        condition: service_started
+
+  worker:
+    build:
+      context: .
+      dockerfile: w3dhcp-api/Dockerfile
+    container_name: w3panel_worker
+    restart: always
+    command: bundle exec rake environment resque:work QUEUE=*
+    volumes:
+      - ./w3dhcp-api:/app
+      - bundle_cache:/usr/local/bundle
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_URL=postgres://w3dhcp:w3dhcp@db:5432/w3dhcp_development
+      - REDIS_URL=redis://redis:6379/0
+      - DNS_SERVER_HOST=${DNS_SERVER_HOST:-dns}
+      - DNS_SERVER_KEY=${DNS_SERVER_KEY:-BO8zpNYJqJ7bc}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      dns:
+        condition: service_started
+
+  web:
+    build:
+      context: .
+      dockerfile: w3dhcp-web/Dockerfile
+    container_name: w3panel_web
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./w3dhcp-web:/app
+      - /app/node_modules
+    environment:
+      - PORT=3000
+      - REACT_APP_API_URL=${REACT_APP_API_URL:-http://localhost:8082/}
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
+  redis_data:
+  bundle_cache:

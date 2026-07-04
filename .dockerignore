@@ -1,0 +1,8 @@
+.git
+.DS_Store
+node_modules
+**/node_modules
+w3dhcp-web/node_modules
+w3dhcp-api/tmp
+w3dhcp-api/log
+w3dhcp-api/vendor/bundle
