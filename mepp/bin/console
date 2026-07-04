@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "mepp"
+
+# You can add fixtures and/or initialization code here to make experimenting
+# with your gem easier. You can also use a different console, if you like.
+
+# (If you use this, don't forget to add pry to your Gemfile!)
+require "pry"
+
+require 'yaml'
+config = YAML.load_file('/opt/w3dhcp/config.yml')
+@epp_clients = {}
+config[:providers].keys.each {|c| @epp_clients[c.to_sym] = Mepp::Client.new(config[:providers][c]) }
+# c = @epp_clients[:hm_register_]
+
+Pry.start binding
+
+#require "irb"
+IRB.start(__FILE__)

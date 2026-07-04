@@ -1,0 +1,65 @@
+PATH
+  remote: .
+  specs:
+    mepp (0.2.0)
+      nokogiri
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ast
+    coderay
+    diff-lcs
+    method_source
+    nokogiri
+      racc
+    parallel
+    parser
+      ast
+    pry
+      coderay
+      method_source
+    racc
+    rainbow
+    rake
+    regexp_parser
+    rexml
+    rspec
+      rspec-core
+      rspec-expectations
+      rspec-mocks
+    rspec-core
+      rspec-support
+    rspec-expectations
+      diff-lcs
+      rspec-support
+    rspec-mocks
+      diff-lcs
+      rspec-support
+    rspec-support
+    rubocop
+      parallel
+      parser
+      rainbow
+      regexp_parser
+      rexml
+      rubocop-ast
+      ruby-progressbar
+      unicode-display_width
+    rubocop-ast
+      parser
+    ruby-progressbar
+    unicode-display_width
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  mepp!
+  pry
+  rake
+  rspec
+  rubocop
+
+BUNDLED WITH
+   4.0.15
