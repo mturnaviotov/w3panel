@@ -1,0 +1,16 @@
+<h1>Hi, <%= @user.email %></h1>
+<p>Your order <%= @order.number %> processed</p>
+<ul>
+  <% @order.items.map do |item| %>
+    <li><%= item["service_type"] %> <%= item['name'] %></li>
+  <% end %>
+</ul>
+
+<% if !@failed.empty? %>
+  <p>Failed items:</p>
+  <ul>
+    <% @failed.each do |item| %>
+      <li><%= item[:service_type] %> <%= item[:name] %>, <%= item[:reason] %></li>
+    <% end %>
+  </ul>
+<% end %>

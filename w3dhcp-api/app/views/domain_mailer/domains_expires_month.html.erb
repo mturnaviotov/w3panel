@@ -1,0 +1,16 @@
+<h1>Hi, <%= @user.email %></h1>
+<p>Your <%= @domains.count %> domains is near expire for next 30 days</p>
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Expire date</td>
+    <td>Renew price</td>
+  </tr>
+  <% @domains.each do |domain| %>
+    <tr>
+      <td><%= domain.name %></td>
+      <td><%= domain.date_expire.to_date %></td>
+      <td><%= domain.domain_zone.prices.renew/100 %> UAH</td>
+    </tr>
+  <% end %>
+</table>

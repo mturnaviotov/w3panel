@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <style type='text/css'>
+    p,td,h1,h2,h3 { font-family: "Times New Roman", Times, serif; font-size: 0.6em }
+    table,th,td { padding: 2px; border-collapse: collapse }
+    br { display: block; margin-bottom: 2px; font-size:2px; line-height: 2px; }
+  </style>
+</head>
+<body>
+<center><h1>Order #<%= @item['number'] %> from <%= Date.today.strftime("%m/%d/%Y") %></h1></center>
+
+<table width='700'>
+  <tr>
+    <td><h4>From</h4></td>
+    <td colspan='5'>
+        <%= @item.invoice_from['name_idn'] %>,
+      <% if !@item.invoice_from['organization_idn'].eql?(@item.invoice_from['name_idn']) %>
+        <%= @item.invoice_from['organization_idn'] %>,
+      <% end %>
+      <strong>Phone: </strong> <%= @item.invoice_from['voice'] %>,
+      <strong>Email: </strong> <%= @item.invoice_from['email'] %>
+    </td>
+  </tr>
+    <tr>
+      <td><strong>Bank name:</strong></td><td> <%= @item.billing_from['bank_name'] %></td>
+      <td><strong>MFO:</strong></td><td> <%= @item.billing_from['mfo'] %></td>
+      <td><strong>Account ID:</strong></td><td> <%= @item.billing_from['account_number'] %></td>
+    </tr>
+    <tr><td><strong>Tax Type:</strong></td><td colspan='5'><%= @item.billing_from['tax_type'] %></td></tr>
+  <tr>
+    <td><h4>Address</h4></td>
+    <td colspan='5'>
+      <%= @item.invoice_from['city_idn'] %>, <%= @item.invoice_from['address_idn'] %>,
+      <%= @item.invoice_from['region_idn'] %>, <%= @item.invoice_from['zipcode'] %>,
+      <%= @item.invoice_from['country'] %>
+    </td>
+  </tr>
+</table>
+<br>
+<table width='700'>
+  <tr>
+    <td><h4>to</h4></td>
+    <td colspan='5'>
+        <%= @item.invoice_to['name_idn'] %>,
+      <% if !@item.invoice_to['organization_idn'].eql?(@item.invoice_to['name_idn']) %>
+        <%= @item.invoice_to['organization_idn'] %>,
+      <% end %>
+      <strong>Phone: </strong> <%= @item.invoice_to['voice'] %>,
+      <strong>Email: </strong> <%= @item.invoice_to['email'] %>
+    </td>
+  </tr>
+  <% if @item.invoice_to['private'].eql?('1') %>
+    <tr>
+      <td><strong>Bank name:</strong></td><td> <%= @item.billing_to['bank_name'] %></td>
+      <td><strong>MFO:</strong></td><td> <%= @item.billing_to['mfo'] %></td>
+      <td><strong>Account ID:</strong></td><td> <%= @item.billing_to['account_number'] %></td>
+    </tr>
+    <tr><td><strong>Tax Type:</strong></td><td colspan='5'><%= @item.billing_to['tax_type'] %></td></tr>
+  <% end %>
+  <tr>
+    <td><h4>Address</h4></td>
+    <td colspan='5'>
+      <%= @item.invoice_to['city_idn'] %>, <%= @item.invoice_to['address_idn'] %>,
+      <%= @item.invoice_to['region_idn'] %>, <%= @item.invoice_to['zipcode'] %>,
+      <%= @item.invoice_to['country'] %>
+    </td>
+  </tr>
+</table>
+
+<br>
+<h4>Services</h4>
+<table border='1' width='700'>
+  <tr>
+    <td>№ п/п</td>
+    <td>Найменування послуг</td>
+    <td>Домен</td>
+    <td>Термін</td>
+    <td>Од. виміру</td>
+    <td>Кількість</td>
+    <td>Ціна без ПДВ</td>
+    <td>Сума без ПДВ</td>
+  </tr>
+  <tr>
+    <% index = 0 %>
+    <% @item.items.each do |item| %>
+    <tr>
+      <td><%= index+=1 %></td>
+      <td><%= item['operation_type'] %> <%= item['service_type'] %></td>
+      <td><%= item['name'] %></td>
+      <td><%= Date.today.year %> to <%= Date.today.advance(:years => 1).year %></td>
+      <td>year</td>
+      <td>1</td>
+      <td><%= "%.2f" % (item['price']/100) %></td>
+      <td><%= "%.2f" % (item['price']/100) %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td colspan='5'></td>
+      <td>Summ:</td>
+      <td colspan='7'><%= "%3.2f" % (@item.summ/100) %> грн</td>
+    </tr>
+    <tr>
+      <td colspan='5'></td>
+      <td>Tax (20):</td>
+      <td colspan='2'> <%= "%3.2f" % ((@item.summ/100/100)*20) %> грн</td>
+    </tr>
+    <tr>
+      <td colspan='8' style='text-align: center;'>Summ: <%= "%3.2f" % (@item.summ/100 + ((@item.summ/100 / 100)* 20)) %> грн
+      <%= RuPropisju.amount_in_words((@item.summ/100 + ((@item.summ/100 / 100)* 20)), :uah, locale = :ua) %></td>
+    </tr>
+</table>
+</body>
+</html>
