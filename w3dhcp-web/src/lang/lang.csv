@@ -1,0 +1,142 @@
+key;en;uk
+accounting;Accounting;Облік
+action.add;Add;Додати
+action.cancel;Cancel;Скасувати
+action.check;Check;Перевірити
+action.clear;Clear;Очистити
+action.confirm;Confirm?;Підтвердити?
+action.create;Create;Створити
+action.delete;Delete;Видалити
+action.edit;Edit;Редагувати
+actions;Actions;Дії
+action.save;Save;Зберегти
+action.search;Search;Шукати
+app.lang;Application language;Мова програми
+board.name;Board;Головна
+cart.add;Add to cart;Додати в кошик
+cart;Cart;Кошик
+cart.del;Remove from cart;Видалити з кошика
+cart.operation;Operation;Операція
+cart.register;Registration;Реєстрація
+cart.renew;Renew;Подовження
+cart.type;Type;Тип
+common;Common;Загальне
+common.contact_us;Contact us;Зв'язок з нами
+common.for;for;для
+common.kind;Kind;Тип
+common.name;Name;Ім'я
+common.number;Number;Номер
+common.summ;Total;Сума
+common.years;Years;Років
+contact.address;Adress;Адреса
+contact.email;E-mail;E-Mail
+contacts;Contacts;Контакти
+contact.voice;Voice;Телефон
+customer.company_name;Company name;Імʼя компанії
+customer.corporate;Corporate;Компанія
+customer;Customer;Клієнт
+customers;Customers;Клієнти
+data.filtered;Filtered {items};Відфільтровано: {items}
+data.loaded;Loaded {items};Завантажено: {items}
+data.loading;Data is being downloaded or missing;Дані завантажуються або відсутні
+data.missing;Data is missing;Дані відсутні
+data.reload;Reload;Оновити
+data.selected;Selected {items};Обрано: {items}
+dns_zone.axfr_retrieve;Retrieve from master;Отримати з основного
+dns_zone;DNS zone;DNS зона
+dns_zone.masters;Master nameservers;Основні сервери імен
+dns_zone.nameservers;Nameservers;Сервери імен
+dns_zone.notify;Notify slaves;Повідомити підпорядковані
+dns_zone.record_content;Content;Вміст
+dns_zone.records;Records;Записи
+dns_zone.record_ttl;TTL;Час життя
+dns_zone.record_type;Type;Тип
+dns_zones;DNS zones;DNS зони
+dns_zone.validation.name;DNS name must be without www part with dot at ending like 'example.com.';Ім'я повинно бути повним, без частини www та з крапкою наприкінці (наприклад, 'example.com.')
+domain.avail;Available;Доступний
+domain.check;Check;Перевірити
+domain.checking;Check domain;Перевірити домен
+domain.delete;Delete;Видалити
+domain;Domain;Домен
+domain.hold;Hold;Очікування (Hold)
+domain.renew;Renew;Подовжити
+domain.restore;Restore;Відновити
+domains;Domains;Домени
+domain.unhold;Unold;Увімкнути (Unhold)
+domain.update;Update;Оновити
+domain_zone.name_ascii;Name (ASCII);Ім'я (ASCII)
+domain_zones;Domain zones;Доменні зони
+ftp_users;FTP Users;FTP користувачі
+header.hello;Hello;Вітаємо
+hosting;Hosting;Хостинг
+navigation.back;Back to list;До списку
+notfound.header;Page not found;Сторінку не знайдено
+notfound.text;Page not found or you are not logged in;Сторінку не знайдено або Ви не авторизовані на сайті
+operator;Operator;Оператор
+orders;Orders;Замовлення
+order.summ;Total;Сума
+price;Price;Ціна
+prices;Prices;Ціни
+price.total;Total price;Загальна сума
+registries;Registries;Реєстри
+registry;Registry;Реєстр
+reseller;Reseller;Посередник
+resellers;Resellers;Посередники
+settings;Tech;Налаштування
+state.active;Active;Активний
+state.all;All;Усі
+state.comment;Comment;Коментар
+state.details;Details;Детальніше
+state.disabled;Disabled;Вимкнуто
+state.expire;Expire;Закінчується
+state.free;Free;Вільний
+status.created;Created;Створений
+status;Status;Статус
+subscriptions;Subscriptions;Підписки
+subscription_templates;Subscription templates;Шаблони підписки
+user.email;Login (E-Mail);Логін (E-Mail)
+user.login;Login;Логін
+user.logout;Logout;Вихід
+user.menu;User;Користувач
+user.password;Password;Пароль
+user.profile;Profile;Профіль
+user.register;Register;Реєстрація
+users;Users;Користувачі
+web_apps;Web Apps;Веб додатки
+action.delete.confirm;Are you sure to delete?;Ви дійсно бажаєте видалити?
+common.status;Status;Статус
+corporate;Corporate;Компанія
+action.refresh;Refresh;Оновити
+new;New;Новий
+action.start;Start;Старт
+action.stop;Stop;Зупинити
+action.restart;Restart;Перезапустити
+action.block.confirm;Block this site?;Заблокувати цей сайт?
+action.block;Block;Заблокувати
+action.unblock.confirm;Unblock this site?;Розблокувати цей сайт?
+action.unblock;Unblock;Розблокувати
+webapp.app_type;App Type;Тип додатку
+webapp.customer_binding;Customer Binding;Прив'язка клієнта
+webapp.ip_binding;IP Address Binding;Прив'язка IP адреси
+ftp.webapp_binding;Web App Binding;Прив'язка до веб-сайту
+ftp.change_password;Change FTP Password;Змінити FTP пароль
+ftp.new_password;New Password;Новий пароль
+webapp;Web App;Веб-сайт
+server;Server;Сервер
+common.expire_date;Expiration Date;Дата закінчення
+common.manual;Manual;Вручну
+common.date;Date;Дата
+common.action;Action;Дія
+common.ip;IP;IP
+common.item;Item;Елемент
+common.description;Description;Опис
+domain_zone.reg_period;Reg Period (min-max);Період реєстрації (мін-макс)
+common.ip_address;IP Address;IP адреса
+common.shared;Shared;Спільний
+common.default;Default;За замовчуванням
+events;Events Log;Операції
+operator_tools;Operator Tools;Інструменти оператора
+ip_addresses;IP Addresses;IP адреси
+event.action.e_create;Created;Створено
+event.action.e_update;Updated;Оновлено
+event.action.e_delete;Deleted;Видалено
